@@ -185,15 +185,17 @@ set_target_properties(EflCpp PROPERTIES CXX_STANDARD 14)
 
 # Boost
 
-set(BOOST_ROOT ${MyDepsBoostDir})
+set(BOOST_INCLUDEDIR ${MyDepsBoostDir})
+set(BOOST_LIBRARYDIR ${MyDepsBoostDir})
 find_package(Boost 1.63.0 REQUIRED COMPONENTS filesystem system log)
-target_link_libraries(EflCpp PUBLIC Boost::boost Boost::filesystem Boost::log Boost::system)
+target_link_libraries(EflCpp PUBLIC Boost::boost Boost::filesystem Boost::log Boost::system rt)
 
 # Efl
 
 if(TIZEN)
 
   target_include_directories(EflCpp SYSTEM PRIVATE
+    ${CMAKE_SYSROOT}/usr/include/
     ${CMAKE_SYSROOT}/usr/include/appfw
     ${CMAKE_SYSROOT}/usr/include/dbus-1.0
     ${CMAKE_SYSROOT}/usr/include/dlog
