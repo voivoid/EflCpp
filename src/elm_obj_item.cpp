@@ -6,13 +6,18 @@
 namespace EflCpp
 {
 
-ElmObjItem::ElmObjItem(Elm_Object_Item& item)
-    : _item(&item)
+ElmObj::Item::Item(Elm_Object_Item* item)
+    : _item(item)
 {
-    EFLCPP_ASSERT(_item)
+    EFLCPP_ASSERT(_item);
 }
 
-void ElmObjItem::setData(void* data, const SetDataMode mode)
+ElmObj::Item::Item(Elm_Object_Item& item)
+    : Item(&item)
+{
+}
+
+void ElmObj::Item::setData(void* data, const SetDataMode mode)
 {
     switch (mode)
     {
@@ -28,44 +33,31 @@ void ElmObjItem::setData(void* data, const SetDataMode mode)
     elm_object_item_data_set(getHandle(), data);
 }
 
-void* ElmObjItem::getData() const
+void* ElmObj::Item::getData() const
 {
     return elm_object_item_data_get(getHandle());
 }
 
-void ElmObjItem::resetData()
+void ElmObj::Item::resetData()
 {
     setData(nullptr);
 }
 
-Elm_Object_Item* ElmObjItem::getHandle() const
+Elm_Object_Item* ElmObj::Item::getHandle() const
 {
     EFLCPP_ASSERT(_item);
     return _item;
 }
-Elm_Object_Item* ElmObjItem::getHandle()
+Elm_Object_Item* ElmObj::Item::getHandle()
 {
     EFLCPP_ASSERT(_item);
     return _item;
 }
 
-WidgetList::WidgetList(const std::vector<Elm_Object_Item*>& items)
+ElmObj::Item::Item(Item&& item) noexcept
 {
-    _items.reserve(items.size());
-    for (const auto& item : items)
-    {
-        _items.push_back(ElmObjItem(*item));
-    }
-}
-
-std::vector<ElmObjItem>& WidgetList::getItems()
-{
-    return _items;
-}
-
-const std::vector<ElmObjItem>& WidgetList::getItems() const
-{
-    return _items;
+    _item = item._item;
+    item._item = nullptr;
 }
 
 } // namespace EflCpp

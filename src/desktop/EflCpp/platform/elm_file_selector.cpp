@@ -103,7 +103,8 @@ void ElmFileSelector::setFilter(const FileSelector::ExtFilter& filter)
 
     _extsToFilter = std::vector<std::string>{};
     _extsToFilter->reserve(filter.extensions.size());
-    std::transform(filter.extensions.cbegin(), filter.extensions.cend(), std::back_inserter(*_extsToFilter), [](const std::string& ext) { return boost::algorithm::to_lower_copy(ext); });
+    std::transform(
+        filter.extensions.cbegin(), filter.extensions.cend(), std::back_inserter(*_extsToFilter), [](const std::string& ext) { return boost::algorithm::to_lower_copy(ext); });
 
     elm_fileselector_custom_filter_append(getHandle(), EFLCPP_WRAP_INTO_SAFE_CALLBACK(fileFilterCallback), (void*)&(*_extsToFilter), filter.name.c_str());
 }

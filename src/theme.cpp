@@ -14,7 +14,11 @@ namespace
 std::string getEdjeFile(const char* const edjeFileName)
 {
     auto edjePath = EflCpp::Files::getEdjeDir() / edjeFileName;
-    EFLCPP_ASSERT(boost::filesystem::exists(edjePath));
+    if (!boost::filesystem::exists(edjePath))
+    {
+        EFLCPP_LOG_FATAL << "Edje file doesn't exist: " << edjePath;
+        EFLCPP_ASSERT(false);
+    }
 
     return edjePath.string();
 }

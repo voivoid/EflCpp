@@ -121,8 +121,7 @@ const auto evasEvents = std::map<EvasEvent, Evas_Callback_Type>{{EvasEvent::Resi
                                                                 {EvasEvent::Del, EVAS_CALLBACK_DEL}};
 
 #ifdef EFLCPP_TIZEN
-const auto eextEvents = std::map<EvasEvent, Eext_Callback_Type>{{EvasEvent::MenuButton, EEXT_CALLBACK_MORE},
-                                                                {EvasEvent::BackButton, EEXT_CALLBACK_BACK}};
+const auto eextEvents = std::map<EvasEvent, Eext_Callback_Type>{{EvasEvent::MenuButton, EEXT_CALLBACK_MORE}, {EvasEvent::BackButton, EEXT_CALLBACK_BACK}};
 
 void eextCallback(void* const signal, Evas_Object* const obj, void* const event_info)
 {
@@ -131,9 +130,11 @@ void eextCallback(void* const signal, Evas_Object* const obj, void* const event_
 
     EvasObj& source = EvasObj::getRef(*obj);
     source.incRefCount();
-    BOOST_SCOPE_EXIT(&source) {
+    BOOST_SCOPE_EXIT(&source)
+    {
         source.decRefCount();
-    } BOOST_SCOPE_EXIT_END
+    }
+    BOOST_SCOPE_EXIT_END
     Details::EvasEventsBase::emitEvent(signal, source, event_info);
 }
 #endif

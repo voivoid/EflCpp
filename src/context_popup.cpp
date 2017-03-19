@@ -42,9 +42,10 @@ void ContextPopup::appendItem(UniqueWidgetPtr<Icon>&& icon, const char* const te
     auto* handlerPtr = new Handler(std::move(handler));
     auto iconHandle = icon ? EvasObj::getHandle(releaseWidgetPtr(std::move(icon))) : nullptr;
     auto* itemPtr = elm_ctxpopup_item_append(getHandle(), text, iconHandle, EFLCPP_WRAP_INTO_SAFE_CALLBACK(CtxPopupButtonCallback), handlerPtr);
-    _items.push_back(itemPtr);
 
-    elm_object_item_data_set(itemPtr, handlerPtr);
+    Item item = *itemPtr;
+    item.setData(handlerPtr, ElmObj::Item::SetDataMode::DoNotOverwrite);
+    _items.emplace_back(std::move(item));
 }
 
 void ContextPopup::appendItem(UniqueWidgetPtr<Icon>&& icon, Handler handler)
@@ -69,8 +70,7 @@ void ContextPopup::dismiss()
 
 void ContextPopup::clear()
 {
-    const auto& items = getItems();
-    for (const auto& item : items.getItems())
+    for (const auto& item : getItems())
     {
         void* data = item.getData();
         EFLCPP_ASSERT(data);
@@ -78,13 +78,12 @@ void ContextPopup::clear()
         delete reinterpret_cast<Handler*>(data);
     }
     _items.clear();
-
     elm_ctxpopup_clear(getHandle());
 }
 
-WidgetList ContextPopup::getItems() const
+const std::vector<ContextPopup::Item>& ContextPopup::getItems() const
 {
-    return {_items};
+    return _items;
 }
 
 } // namespace EflCpp

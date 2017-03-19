@@ -29,7 +29,8 @@ PopupPtr makeDialog(Window& parent, const char* const title, DialogButton::Handl
 }
 }
 
-PopupPtr makeDialog(Window& parent, const char* const title, const char* const text, std::vector<DialogButton> buttonsInfos, DialogButton::Handler onCloseHandler, const char* const objId)
+PopupPtr makeDialog(
+    Window& parent, const char* const title, const char* const text, std::vector<DialogButton> buttonsInfos, DialogButton::Handler onCloseHandler, const char* const objId)
 {
     EFLCPP_ASSERT(buttonsInfos.size() <= 3);
 

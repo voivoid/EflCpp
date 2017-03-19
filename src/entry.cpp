@@ -10,13 +10,15 @@ namespace EflCpp
 namespace
 {
 
-static const auto AutoCapitalModeBimap = makeUnorderedBimap<Entry::AutoCapitalMode, Elm_Autocapital_Type>({{Entry::AutoCapitalMode::None, ELM_AUTOCAPITAL_TYPE_NONE},
-                                                                                                           {Entry::AutoCapitalMode::Word, ELM_AUTOCAPITAL_TYPE_WORD},
-                                                                                                           {Entry::AutoCapitalMode::Sentence, ELM_AUTOCAPITAL_TYPE_SENTENCE},
-                                                                                                           {Entry::AutoCapitalMode::AllChars, ELM_AUTOCAPITAL_TYPE_ALLCHARACTER}});
+static const auto AutoCapitalModeBimap =
+    makeUnorderedBimap<Entry::AutoCapitalMode, Elm_Autocapital_Type>({{Entry::AutoCapitalMode::None, ELM_AUTOCAPITAL_TYPE_NONE},
+                                                                      {Entry::AutoCapitalMode::Word, ELM_AUTOCAPITAL_TYPE_WORD},
+                                                                      {Entry::AutoCapitalMode::Sentence, ELM_AUTOCAPITAL_TYPE_SENTENCE},
+                                                                      {Entry::AutoCapitalMode::AllChars, ELM_AUTOCAPITAL_TYPE_ALLCHARACTER}});
 
-static const auto ReturnKeyTypeBimap = makeUnorderedBimap<Entry::ReturnKey, Elm_Input_Panel_Return_Key_Type>(
-    {{Entry::ReturnKey::Done, ELM_INPUT_PANEL_RETURN_KEY_TYPE_DONE}, {Entry::ReturnKey::Login, ELM_INPUT_PANEL_RETURN_KEY_TYPE_LOGIN}, {Entry::ReturnKey::Next, ELM_INPUT_PANEL_RETURN_KEY_TYPE_NEXT}});
+static const auto ReturnKeyTypeBimap = makeUnorderedBimap<Entry::ReturnKey, Elm_Input_Panel_Return_Key_Type>({{Entry::ReturnKey::Done, ELM_INPUT_PANEL_RETURN_KEY_TYPE_DONE},
+                                                                                                              {Entry::ReturnKey::Login, ELM_INPUT_PANEL_RETURN_KEY_TYPE_LOGIN},
+                                                                                                              {Entry::ReturnKey::Next, ELM_INPUT_PANEL_RETURN_KEY_TYPE_NEXT}});
 
 static const auto WrapBiMap = makeUnorderedBimap<Entry::Wrap, Elm_Wrap_Type>({
     {Entry::Wrap::None, ELM_WRAP_NONE}, {Entry::Wrap::Char, ELM_WRAP_CHAR}, {Entry::Wrap::Word, ELM_WRAP_WORD}, {Entry::Wrap::Mixed, ELM_WRAP_MIXED},

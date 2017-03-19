@@ -19,7 +19,9 @@ static const auto MovementBlockBimap = makeUnorderedBimap<Scrollable::MovementBl
      {Scrollable::MovementBlock::Both, static_cast<Elm_Scroller_Movement_Block>(ELM_SCROLLER_MOVEMENT_BLOCK_HORIZONTAL | ELM_SCROLLER_MOVEMENT_BLOCK_VERTICAL)}});
 
 static const auto BarVisibilityBimap = makeUnorderedBimap<Scrollable::BarVisibility, Elm_Scroller_Policy>({
-    {Scrollable::BarVisibility::Auto, ELM_SCROLLER_POLICY_AUTO}, {Scrollable::BarVisibility::On, ELM_SCROLLER_POLICY_ON}, {Scrollable::BarVisibility::Off, ELM_SCROLLER_POLICY_OFF},
+    {Scrollable::BarVisibility::Auto, ELM_SCROLLER_POLICY_AUTO},
+    {Scrollable::BarVisibility::On, ELM_SCROLLER_POLICY_ON},
+    {Scrollable::BarVisibility::Off, ELM_SCROLLER_POLICY_OFF},
 });
 }
 

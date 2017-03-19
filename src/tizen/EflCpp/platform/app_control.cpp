@@ -30,8 +30,9 @@ void checkAppCtrlResult(const char* const failedFunc, const int errCode)
     }
 }
 
-static const auto appCtrlOpsBimap = makeUnorderedBimap<AppControl::Operation, std::string>(
-    {{AppControl::Operation::Default, APP_CONTROL_OPERATION_DEFAULT}, {AppControl::Operation::View, APP_CONTROL_OPERATION_VIEW}, {AppControl::Operation::Pick, APP_CONTROL_OPERATION_PICK}});
+static const auto appCtrlOpsBimap = makeUnorderedBimap<AppControl::Operation, std::string>({{AppControl::Operation::Default, APP_CONTROL_OPERATION_DEFAULT},
+                                                                                            {AppControl::Operation::View, APP_CONTROL_OPERATION_VIEW},
+                                                                                            {AppControl::Operation::Pick, APP_CONTROL_OPERATION_PICK}});
 
 void freeAppControl(const bool isOwner, app_control_h ctrl)
 {

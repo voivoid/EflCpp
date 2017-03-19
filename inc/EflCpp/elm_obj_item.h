@@ -9,16 +9,28 @@
 namespace EflCpp
 {
 
-class ElmObjItem
+#define EFLCPP_USE_DEFAULT_OBJITEM_METHODS \
+    using ElmObj::Item::setData;           \
+    using ElmObj::Item::getData;           \
+    using ElmObj::Item::resetData;         \
+    using ElmObj::Item::Item;              \
+    using ElmObj::Item::getHandle;
+
+class ElmObj::Item
 {
 public:
-    ElmObjItem(Elm_Object_Item& item);
-
     enum class SetDataMode
     {
         Overwrite,
         DoNotOverwrite
     };
+
+    Item(Elm_Object_Item* item);
+    Item(Elm_Object_Item& item);
+    Item(Item&& item) noexcept;
+    Item& operator=(Item&& item) = delete;
+    DISABLE_COPY_SEMANTICS(Item);
+
     void setData(void* data, SetDataMode mode = SetDataMode::DoNotOverwrite);
     void* getData() const;
     void resetData();
@@ -28,20 +40,6 @@ public:
 
 private:
     Elm_Object_Item* _item;
-    const WidgetPtr<const EvasObj> _obj;
-};
-
-class WidgetList
-{
-public:
-    WidgetList(const std::vector<Elm_Object_Item*>& items);
-
-    std::vector<ElmObjItem>& getItems();
-    const std::vector<ElmObjItem>& getItems() const;
-
-private:
-    std::vector<ElmObjItem> _items;
-    const WidgetPtr<const EvasObj> _obj;
 };
 
 } // namespace EflCpp

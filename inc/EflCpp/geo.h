@@ -67,7 +67,8 @@ struct ColorRGBA
     {
     }
 
-    constexpr ColorRGBA(T r, T g, T b) : ColorRGBA(r, g, b, T{255})
+    constexpr ColorRGBA(T r, T g, T b)
+        : ColorRGBA(r, g, b, T{255})
     {
     }
 

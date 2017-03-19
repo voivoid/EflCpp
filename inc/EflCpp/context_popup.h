@@ -24,18 +24,22 @@ public:
     void clear();
     void dismiss();
 
+    class Item : private ElmObj::Item
+    {
+    public:
+        EFLCPP_USE_DEFAULT_OBJITEM_METHODS
+    };
+    const std::vector<Item>& getItems() const;
+
     static constexpr const char* EventDismissed = "dismissed";
 
 protected:
     ContextPopup(ElmObj& parent, const char* objId = ContextPopupDefaultId);
 
 private:
-    WidgetList getItems() const;
-
-private:
     static constexpr const char* ContextPopupDefaultId = "CONTEXTPOPUP";
 
-    std::vector<Elm_Object_Item*> _items;
+    std::vector<Item> _items;
 };
 using ContextPopupPtr = WidgetPtr<ContextPopup>;
 

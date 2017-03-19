@@ -11,6 +11,7 @@ public:
     ~Button();
 
     static constexpr const char* StylePopup = "popup";
+    static constexpr const char* StyleContacts = "contacts";
 
 protected:
     Button(ElmObj& parent, const char* objId = ButtonDefaultId);

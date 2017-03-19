@@ -22,8 +22,10 @@ namespace
 
 #if TIZEN_SDK_VERSION >= 240
 using ResourceTypeMap = std::map<ResourceType, app_resource_e>;
-const ResourceTypeMap resourceTypeMap{
-    {ResourceType::Image, APP_RESOURCE_TYPE_IMAGE}, {ResourceType::Layout, APP_RESOURCE_TYPE_LAYOUT}, {ResourceType::Sound, APP_RESOURCE_TYPE_SOUND}, {ResourceType::Binary, APP_RESOURCE_TYPE_BIN}};
+const ResourceTypeMap resourceTypeMap{{ResourceType::Image, APP_RESOURCE_TYPE_IMAGE},
+                                      {ResourceType::Layout, APP_RESOURCE_TYPE_LAYOUT},
+                                      {ResourceType::Sound, APP_RESOURCE_TYPE_SOUND},
+                                      {ResourceType::Binary, APP_RESOURCE_TYPE_BIN}};
 }
 
 boost::filesystem::path getAppResourcePath(const char* resFilename, ResourceType resourceType)

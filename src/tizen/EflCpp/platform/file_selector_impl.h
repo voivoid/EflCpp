@@ -13,7 +13,8 @@ namespace FileSelector
 // class FileSelectorImpl
 //{
 // public:
-//    FileSelectorImpl(bool multiselection, const boost::filesystem::path& root, FileSelector::MultipleFileHandler handler, const FileSelector::Filter& filter, bool dirsOnly);
+//    FileSelectorImpl(bool multiselection, const boost::filesystem::path& root, FileSelector::MultipleFileHandler handler, const
+//    FileSelector::Filter& filter, bool dirsOnly);
 //    ~FileSelectorImpl();
 //    void launch();
 

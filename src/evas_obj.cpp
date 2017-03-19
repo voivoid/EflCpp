@@ -15,16 +15,18 @@ const char* EvasObjRefKey = "eflcpp_evasobj_ref";
 size_t CreatedObjects = 0;
 size_t DeletedObjects = 0;
 
-static const auto DisplayModeBimap = EflCpp::makeUnorderedBimap<EflCpp::EvasObj::DisplayMode, Evas_Display_Mode>({{EflCpp::EvasObj::DisplayMode::Default, EVAS_DISPLAY_MODE_NONE},
-                                                                                                                  {EflCpp::EvasObj::DisplayMode::Compress, EVAS_DISPLAY_MODE_COMPRESS},
-                                                                                                                  {EflCpp::EvasObj::DisplayMode::Expand, EVAS_DISPLAY_MODE_EXPAND},
-                                                                                                                  {EflCpp::EvasObj::DisplayMode::DontChange, EVAS_DISPLAY_MODE_DONT_CHANGE}});
+static const auto DisplayModeBimap =
+    EflCpp::makeUnorderedBimap<EflCpp::EvasObj::DisplayMode, Evas_Display_Mode>({{EflCpp::EvasObj::DisplayMode::Default, EVAS_DISPLAY_MODE_NONE},
+                                                                                 {EflCpp::EvasObj::DisplayMode::Compress, EVAS_DISPLAY_MODE_COMPRESS},
+                                                                                 {EflCpp::EvasObj::DisplayMode::Expand, EVAS_DISPLAY_MODE_EXPAND},
+                                                                                 {EflCpp::EvasObj::DisplayMode::DontChange, EVAS_DISPLAY_MODE_DONT_CHANGE}});
 
-static const auto AspectControlBimap = EflCpp::makeUnorderedBimap<EflCpp::EvasObj::AspectControl, Evas_Aspect_Control>({{EflCpp::EvasObj::AspectControl::Default, EVAS_ASPECT_CONTROL_NONE},
-                                                                                                                        {EflCpp::EvasObj::AspectControl::Neither, EVAS_ASPECT_CONTROL_NEITHER},
-                                                                                                                        {EflCpp::EvasObj::AspectControl::Horizontal, EVAS_ASPECT_CONTROL_HORIZONTAL},
-                                                                                                                        {EflCpp::EvasObj::AspectControl::Vertical, EVAS_ASPECT_CONTROL_VERTICAL},
-                                                                                                                        {EflCpp::EvasObj::AspectControl::Both, EVAS_ASPECT_CONTROL_BOTH}});
+static const auto AspectControlBimap =
+    EflCpp::makeUnorderedBimap<EflCpp::EvasObj::AspectControl, Evas_Aspect_Control>({{EflCpp::EvasObj::AspectControl::Default, EVAS_ASPECT_CONTROL_NONE},
+                                                                                     {EflCpp::EvasObj::AspectControl::Neither, EVAS_ASPECT_CONTROL_NEITHER},
+                                                                                     {EflCpp::EvasObj::AspectControl::Horizontal, EVAS_ASPECT_CONTROL_HORIZONTAL},
+                                                                                     {EflCpp::EvasObj::AspectControl::Vertical, EVAS_ASPECT_CONTROL_VERTICAL},
+                                                                                     {EflCpp::EvasObj::AspectControl::Both, EVAS_ASPECT_CONTROL_BOTH}});
 
 void evasDelCallback(void* const evasObj, Evas* const, Evas_Object* const, void* const)
 {

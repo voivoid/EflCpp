@@ -27,6 +27,8 @@ public:
     Window& getWindow() const;
 
 protected:
+    class Item;
+
     template <typename... Args>
     ElmObj(const char* objId, ElmObj* parent, Evas_Object* (*factory)(Evas_Object*, Args...), Args... args)
         : EvasObj(createEvasObject(objId, parent, factory, args...), objId)

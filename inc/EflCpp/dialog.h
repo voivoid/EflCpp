@@ -25,7 +25,8 @@ struct DialogButton
 };
 
 class Window;
-PopupPtr makeDialog(Window& parent, const char* title, const char* text, std::vector<DialogButton> buttons, DialogButton::Handler onCloseHandler, const char* objId = "DIALOG");
+PopupPtr makeDialog(
+    Window& parent, const char* title, const char* text, std::vector<DialogButton> buttons, DialogButton::Handler onCloseHandler, const char* objId = "DIALOG");
 PopupPtr makeDialog(Window& parent, const char* title, ElmObj& content, DialogButton::Handler onCloseHandler, const char* objId = "DIALOG");
 
 } // namespace EflCpp

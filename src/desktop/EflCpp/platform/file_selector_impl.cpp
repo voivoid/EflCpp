@@ -54,7 +54,8 @@ FileSelector::PathsOpt parseSelectedFilesStr(const char* const str)
     return results;
 }
 
-void launchImpl(const bool multiselection, const boost::filesystem::path& root, FileSelector::MultipleFileHandler handler, const FileSelector::Filter& filter, const bool dirsOnly)
+void launchImpl(
+    const bool multiselection, const boost::filesystem::path& root, FileSelector::MultipleFileHandler handler, const FileSelector::Filter& filter, const bool dirsOnly)
 {
 
     auto window = Window::createUnique(nullptr, "FileSelector");

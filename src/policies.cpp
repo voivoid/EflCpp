@@ -13,16 +13,18 @@ namespace Policies
 namespace
 {
 
-static const auto AutoQuitBimap =
-    makeUnorderedBimap<AutoQuit, Elm_Policy_Quit>({{Policies::AutoQuit::NoAutoQuit, ELM_POLICY_QUIT_NONE}, {Policies::AutoQuit::OnLastWindowClosed, ELM_POLICY_QUIT_LAST_WINDOW_CLOSED}});
+static const auto AutoQuitBimap = makeUnorderedBimap<AutoQuit, Elm_Policy_Quit>(
+    {{Policies::AutoQuit::NoAutoQuit, ELM_POLICY_QUIT_NONE}, {Policies::AutoQuit::OnLastWindowClosed, ELM_POLICY_QUIT_LAST_WINDOW_CLOSED}});
 
-static const auto OnExitBimap = makeUnorderedBimap<OnExit, Elm_Policy_Exit>({{Policies::OnExit::DoNothing, ELM_POLICY_EXIT_NONE}, {Policies::OnExit::DeleteWindows, ELM_POLICY_EXIT_WINDOWS_DEL}});
+static const auto OnExitBimap =
+    makeUnorderedBimap<OnExit, Elm_Policy_Exit>({{Policies::OnExit::DoNothing, ELM_POLICY_EXIT_NONE}, {Policies::OnExit::DeleteWindows, ELM_POLICY_EXIT_WINDOWS_DEL}});
 
-static const auto ThrottleBimap = makeUnorderedBimap<Throttle, Elm_Policy_Throttle>(
-    {{Policies::Throttle::Config, ELM_POLICY_THROTTLE_CONFIG}, {Policies::Throttle::Always, ELM_POLICY_THROTTLE_HIDDEN_ALWAYS}, {Policies::Throttle::Never, ELM_POLICY_THROTTLE_NEVER}});
+static const auto ThrottleBimap = makeUnorderedBimap<Throttle, Elm_Policy_Throttle>({{Policies::Throttle::Config, ELM_POLICY_THROTTLE_CONFIG},
+                                                                                     {Policies::Throttle::Always, ELM_POLICY_THROTTLE_HIDDEN_ALWAYS},
+                                                                                     {Policies::Throttle::Never, ELM_POLICY_THROTTLE_NEVER}});
 
-static const auto AccelarationBimap =
-    makeUnorderedBimap<Acceleration, const char*>({{Policies::Acceleration::Hardware, "hardware"}, {Policies::Acceleration::OpenGl, "opengl"}, {Policies::Acceleration::ThreeD, "3d"}});
+static const auto AccelarationBimap = makeUnorderedBimap<Acceleration, const char*>(
+    {{Policies::Acceleration::Hardware, "hardware"}, {Policies::Acceleration::OpenGl, "opengl"}, {Policies::Acceleration::ThreeD, "3d"}});
 }
 
 void set(const Policies::AutoQuit policy)

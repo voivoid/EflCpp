@@ -31,7 +31,8 @@ GestureEvents::ZoomData adaptEventInfo(void* const eventInfo, const GestureEvent
 template <>
 GestureEvents::TapsData adaptEventInfo(void* const eventInfo, const GestureEvent event)
 {
-    EFLCPP_ASSERT(event.first == GestureEventType::Taps || event.first == GestureEventType::LongTaps || event.first == GestureEventType::DoubleTaps || event.first == GestureEventType::TripleTaps);
+    EFLCPP_ASSERT(event.first == GestureEventType::Taps || event.first == GestureEventType::LongTaps || event.first == GestureEventType::DoubleTaps ||
+                  event.first == GestureEventType::TripleTaps);
     EFLCPP_ASSERT(eventInfo);
 
     const auto& info = *reinterpret_cast<Elm_Gesture_Taps_Info*>(eventInfo);

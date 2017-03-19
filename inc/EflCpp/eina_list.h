@@ -7,19 +7,24 @@
 namespace EflCpp
 {
 
-template <typename T>
-std::vector<T> createVectorFromEinaList(const Eina_List& list)
+template <typename VectorElem, typename EinaListElem = VectorElem>
+std::vector<VectorElem> createVectorFromEinaList(const Eina_List* list)
 {
-    std::vector<T> vec;
+    if (!list)
+    {
+        return {};
+    }
 
-    const auto size = eina_list_count(&list);
+    std::vector<VectorElem> vec;
+
+    const auto size = eina_list_count(list);
     vec.reserve(size);
 
     void* elem = nullptr;
     const Eina_List* l = nullptr;
-    EINA_LIST_FOREACH(&list, l, elem)
+    EINA_LIST_FOREACH(list, l, elem)
     {
-        vec.push_back(static_cast<T>(elem));
+        vec.emplace_back(static_cast<EinaListElem>(elem));
     }
 
     return vec;
