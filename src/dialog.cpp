@@ -20,7 +20,7 @@ PopupPtr makeDialog(Window& parent, const char* const title, DialogButton::Handl
     popup->setTitle(title);
 
 #ifdef EFLCPP_TIZEN
-    popup->setEventHandler(EvasEvent::BackButtonPressed, [onClose = std::move(onCloseHandler)](EvasObj&) { onClose(); });
+    popup->setEventHandler(EvasEvent::BackButton, [onClose = std::move(onCloseHandler)](EvasObj&) { onClose(); });
 #else
     popup->setSmartEventHandler(Popup::EventBlockClicked, [onClose = std::move(onCloseHandler)](ElmObj&, void*) { onClose(); });
 #endif

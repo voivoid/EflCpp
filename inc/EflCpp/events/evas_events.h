@@ -13,7 +13,8 @@ class EvasObj;
 enum class EvasEvent
 {
 #ifdef EFLCPP_TIZEN
-    BackButtonPressed,
+    MenuButton,
+    BackButton,
 #endif
     Resize,
     Move,

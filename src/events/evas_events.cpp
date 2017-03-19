@@ -24,7 +24,9 @@ const char* getEvasEventName(const EvasEvent event)
     switch (event)
     {
 #ifdef EFLCPP_TIZEN
-        case EvasEvent::BackButtonPressed:
+        case EvasEvent::MenuButton:
+            return "MenuButton";
+        case EvasEvent::BackButton:
             return "BackButton";
 #endif
         case EvasEvent::Resize:
@@ -119,7 +121,8 @@ const auto evasEvents = std::map<EvasEvent, Evas_Callback_Type>{{EvasEvent::Resi
                                                                 {EvasEvent::Del, EVAS_CALLBACK_DEL}};
 
 #ifdef EFLCPP_TIZEN
-const auto eextEvents = std::map<EvasEvent, Eext_Callback_Type>{{EvasEvent::BackButtonPressed, EEXT_CALLBACK_BACK}};
+const auto eextEvents = std::map<EvasEvent, Eext_Callback_Type>{{EvasEvent::MenuButton, EEXT_CALLBACK_MORE},
+                                                                {EvasEvent::BackButton, EEXT_CALLBACK_BACK}};
 
 void eextCallback(void* const signal, Evas_Object* const obj, void* const event_info)
 {
