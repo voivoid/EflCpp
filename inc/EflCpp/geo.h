@@ -66,6 +66,11 @@ struct ColorRGBA
         , a(a)
     {
     }
+
+    constexpr ColorRGBA(T r, T g, T b) : ColorRGBA(r, g, b, T{255})
+    {
+    }
+
     const T r;
     const T g;
     const T b;

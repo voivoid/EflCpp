@@ -1,6 +1,9 @@
 cmake_minimum_required(VERSION 3.7)
 
 set(MyDepsDir ${CMAKE_CURRENT_BINARY_DIR}/Deps)
+
+set(CMAKE_FIND_ROOT_PATH ${MyDepsDir} ${CMAKE_FIND_ROOT_PATH})
+
 set(MyDepsBoostDir ${MyDepsDir}/boost)
 set(MyDepsEflDir ${MyDepsDir}/Efl)
 set(MyDepsElmDir ${MyDepsDir}/Elm)

@@ -4,6 +4,8 @@
 #include "EflCpp/log.h"
 #include "EflCpp/safe_callback.h"
 
+#include <boost/scope_exit.hpp>
+
 #include <map>
 
 #include "EflCpp/elementary_inc.h"
@@ -125,6 +127,10 @@ void eextCallback(void* const signal, Evas_Object* const obj, void* const event_
     EFLCPP_ASSERT(obj);
 
     EvasObj& source = EvasObj::getRef(*obj);
+    source.incRefCount();
+    BOOST_SCOPE_EXIT(&source) {
+        source.decRefCount();
+    } BOOST_SCOPE_EXIT_END
     Details::EvasEventsBase::emitEvent(signal, source, event_info);
 }
 #endif
