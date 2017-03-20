@@ -25,6 +25,7 @@ set(SOURCES
   inc/EflCpp/bimap.h
   inc/EflCpp/box.h
   inc/EflCpp/button.h
+  inc/EflCpp/calendar.h
   inc/EflCpp/canvas.h
   inc/EflCpp/canvas_box.h
   inc/EflCpp/canvas_image.h
@@ -89,6 +90,7 @@ set(SOURCES
   src/background.cpp
   src/box.cpp
   src/button.cpp
+  src/calendar.cpp
   src/canvas.cpp
   src/canvas_box.cpp
   src/canvas_image.cpp

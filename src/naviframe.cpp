@@ -8,7 +8,7 @@
 namespace EflCpp
 {
 
-NaviFrame::NaviFrame(ElmObj& parent, const char* objId)
+NaviFrame::NaviFrame(ElmObj& parent, const char* const objId)
     : Layout(objId, &parent, &elm_naviframe_add)
 {
     EFLCPP_LOG_OBJECT_METHOD;
@@ -19,7 +19,7 @@ NaviFrame::~NaviFrame()
     EFLCPP_LOG_OBJECT_METHOD;
 }
 
-NaviFrame::Item NaviFrame::pushItem(EvasObj& content, const char* label, EvasObj* prevButton, EvasObj* nextButton, const char* style)
+NaviFrame::Item NaviFrame::pushItem(EvasObj& content, const char* const label, EvasObj* const prevButton, EvasObj* const nextButton, const char* const style)
 {
     auto* itemPtr = elm_naviframe_item_push(getHandle(), label, getButtonHandle(prevButton), getButtonHandle(nextButton), EvasObj::getHandle(content), style);
     EFLCPP_ASSERT(itemPtr);
@@ -33,7 +33,8 @@ NaviFrame::Item NaviFrame::pushItem(EvasObj& content)
     return {*itemPtr};
 }
 
-NaviFrame::Item NaviFrame::insertAfter(const Item& after, EvasObj& content, const char* label, EvasObj* prevButton, EvasObj* nextButton, const char* style)
+NaviFrame::Item NaviFrame::insertAfter(
+    const Item& after, EvasObj& content, const char* const label, EvasObj* const prevButton, EvasObj* const nextButton, const char* const style)
 {
     auto* itemPtr =
         elm_naviframe_item_insert_after(getHandle(), after.getHandle(), label, getButtonHandle(prevButton), getButtonHandle(nextButton), EvasObj::getHandle(content), style);
@@ -42,7 +43,8 @@ NaviFrame::Item NaviFrame::insertAfter(const Item& after, EvasObj& content, cons
     return {*itemPtr};
 }
 
-NaviFrame::Item NaviFrame::insertBefore(const Item& before, EvasObj& content, const char* label, EvasObj* prevButton, EvasObj* nextButton, const char* style)
+NaviFrame::Item NaviFrame::insertBefore(
+    const Item& before, EvasObj& content, const char* const label, EvasObj* const prevButton, EvasObj* const nextButton, const char* const style)
 {
     auto* itemPtr =
         elm_naviframe_item_insert_before(getHandle(), before.getHandle(), label, getButtonHandle(prevButton), getButtonHandle(nextButton), EvasObj::getHandle(content), style);
@@ -94,7 +96,7 @@ std::vector<NaviFrame::Item> NaviFrame::getItems() const
     return createVectorFromEinaList<Item, Elm_Object_Item*>(itemsList);
 }
 
-void NaviFrame::Item::setStyle(const char* style)
+void NaviFrame::Item::setStyle(const char* const style)
 {
     elm_naviframe_item_style_set(getHandle(), style);
 }
@@ -104,7 +106,7 @@ const char* NaviFrame::Item::getStyle() const
     return elm_naviframe_item_style_get(getHandle());
 }
 
-Evas_Object* NaviFrame::getButtonHandle(EvasObj* button)
+Evas_Object* NaviFrame::getButtonHandle(EvasObj* const button)
 {
     return button ? getHandle(*button) : nullptr;
 }
