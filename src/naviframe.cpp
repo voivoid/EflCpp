@@ -53,9 +53,15 @@ NaviFrame::Item NaviFrame::insertBefore(
     return {*itemPtr};
 }
 
-void NaviFrame::popItem()
+EvasObj* NaviFrame::popItem()
 {
-    elm_naviframe_item_pop(getHandle());
+    Evas_Object* obj = elm_naviframe_item_pop(getHandle());
+    if(!obj)
+    {
+        return nullptr;
+    }
+
+    return EvasObj::getPtr(*obj);
 }
 
 void NaviFrame::popTo(const Item& item)
@@ -66,6 +72,21 @@ void NaviFrame::popTo(const Item& item)
 void NaviFrame::promote(const Item& item)
 {
     elm_naviframe_item_promote(item.getHandle());
+}
+
+void NaviFrame::promote(EvasObj& content)
+{
+    elm_naviframe_item_simple_promote(getHandle(), EvasObj::getHandle(content));
+}
+
+void NaviFrame::enablePreserveOnPop(const bool preserve)
+{
+    elm_naviframe_content_preserve_on_pop_set(getHandle(), preserve);
+}
+
+bool NaviFrame::isPreservedOnPop() const
+{
+    return elm_naviframe_content_preserve_on_pop_get(getHandle());
 }
 
 boost::optional<NaviFrame::Item> NaviFrame::getTopItem() const
@@ -79,7 +100,7 @@ boost::optional<NaviFrame::Item> NaviFrame::getTopItem() const
     return {Item{*itemPtr}};
 }
 
-boost::optional<NaviFrame::Item> NaviFrame::getBootmItem() const
+boost::optional<NaviFrame::Item> NaviFrame::getBootomItem() const
 {
     auto* itemPtr = elm_naviframe_bottom_item_get(getHandle());
     if (!itemPtr)
@@ -106,9 +127,39 @@ const char* NaviFrame::Item::getStyle() const
     return elm_naviframe_item_style_get(getHandle());
 }
 
+void NaviFrame::Item::enableTitle(const bool enable, const bool transition)
+{
+    elm_naviframe_item_title_enabled_set(getHandle(), enable, transition);
+}
+
+bool NaviFrame::Item::isTitleEnabled() const
+{
+    return elm_naviframe_item_title_enabled_get(getHandle());
+}
+
 Evas_Object* NaviFrame::getButtonHandle(EvasObj* const button)
 {
     return button ? getHandle(*button) : nullptr;
+}
+
+void NaviFrame::enableAutoCreatePrevButton(bool enable)
+{
+    elm_naviframe_event_enabled_set(getHandle(), enable);
+}
+
+bool NaviFrame::isAutoCreatingPrevButton() const
+{
+    return elm_naviframe_event_enabled_get(getHandle());
+}
+
+void NaviFrame::enablePushPopEvent(bool enable)
+{
+    elm_naviframe_event_enabled_set(getHandle(), enable);
+}
+
+bool NaviFrame::isPushPopEventEnabled() const
+{
+    return elm_naviframe_event_enabled_get(getHandle());
 }
 
 } // namespace EflCpp

@@ -24,6 +24,9 @@ public:
 
         void setStyle(const char* style);
         const char* getStyle() const;
+
+        void enableTitle(bool enable, bool transition);
+        bool isTitleEnabled() const;
     };
 
     Item pushItem(EvasObj& content, const char* label, EvasObj* prevButton = nullptr, EvasObj* nextButton = nullptr, const char* style = nullptr);
@@ -31,13 +34,23 @@ public:
     Item insertAfter(const Item& after, EvasObj& content, const char* label, EvasObj* prevButton = nullptr, EvasObj* nextButton = nullptr, const char* style = nullptr);
     Item insertBefore(const Item& before, EvasObj& content, const char* label, EvasObj* prevButton = nullptr, EvasObj* nextButton = nullptr, const char* style = nullptr);
 
-    void popItem();
+    EvasObj* popItem();
     void popTo(const Item& item);
 
+    void enablePreserveOnPop(bool preserve);
+    bool isPreservedOnPop() const;
+
+    void enableAutoCreatePrevButton(bool enable);
+    bool isAutoCreatingPrevButton() const;
+
+    void enablePushPopEvent(bool enable);
+    bool isPushPopEventEnabled() const;
+
     void promote(const Item& item);
+    void promote(EvasObj& content);
 
     boost::optional<Item> getTopItem() const;
-    boost::optional<Item> getBootmItem() const;
+    boost::optional<Item> getBootomItem() const;
 
     std::vector<Item> getItems() const;
 
